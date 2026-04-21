@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b5d57" />
+  <meta name="description" content="Parental Controls — a simple, bilingual guide for parents to keep kids safe online across iPhone, Android, Windows, Mac, and YouTube." />
+  <title>Parental Controls · Keeping Kids Safe Online</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f6f4ef;
+      --bg-2: #fbfaf6;
+      --surface: #ffffff;
+      --ink: #16201e;
+      --ink-2: #3b4744;
+      --muted: #6b7771;
+      --line: #e7e1d6;
+      --line-2: #efeae0;
+
+      --brand: #0b5d57;
+      --brand-2: #094842;
+      --brand-soft: #e6f2f0;
+
+      --accent: #d46b3d;
+      --accent-soft: #fdece2;
+
+      --warning: #b45309;
+      --warning-soft: #fef3c7;
+
+      --shadow-sm: 0 1px 2px rgba(22, 32, 30, 0.04), 0 1px 3px rgba(22, 32, 30, 0.06);
+      --shadow-md: 0 4px 12px rgba(22, 32, 30, 0.06), 0 2px 4px rgba(22, 32, 30, 0.04);
+      --shadow-lg: 0 20px 40px rgba(22, 32, 30, 0.08), 0 6px 12px rgba(22, 32, 30, 0.04);
+
+      --r-sm: 10px;
+      --r-md: 16px;
+      --r-lg: 22px;
+      --r-xl: 28px;
+
+      --font-en: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      --font-ar: "IBM Plex Sans Arabic", "Tajawal", system-ui, Tahoma, sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after { box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-en);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--bg);
+      background-image:
+        radial-gradient(1200px 600px at 90% -200px, rgba(11, 93, 87, 0.08), transparent 60%),
+        radial-gradient(900px 500px at -10% 10%, rgba(212, 107, 61, 0.06), transparent 60%);
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body.rtl {
+      font-family: var(--font-ar);
+    }
+
+    body.rtl h1, body.rtl h2, body.rtl h3 {
+      letter-spacing: 0;
+    }
+
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; }
+    button { font: inherit; color: inherit; }
+
+    /* ─── Layout ─── */
+    .wrap {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 16px calc(40px + env(safe-area-inset-bottom));
+    }
+
+    /* ─── Top bar ─── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: saturate(1.2) blur(12px);
+      -webkit-backdrop-filter: saturate(1.2) blur(12px);
+      background: rgba(246, 244, 239, 0.82);
+      border-bottom: 1px solid rgba(231, 225, 214, 0.7);
+    }
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 16px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: linear-gradient(140deg, var(--brand), var(--brand-2));
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      box-shadow: 0 4px 10px rgba(11, 93, 87, 0.25);
+    }
+    .brand-mark svg { width: 18px; height: 18px; }
+    .brand-text { font-size: 0.95rem; }
+
+    .lang-switch {
+      display: inline-flex;
+      padding: 3px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+    }
+    .lang-btn {
+      border: 0;
+      background: transparent;
+      padding: 6px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--ink-2);
+      transition: color 0.2s ease;
+    }
+    .lang-btn.active {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    /* ─── Hero ─── */
+    .hero {
+      margin-top: 22px;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--r-xl);
+      padding: 28px 22px 30px;
+      color: #f5f7f6;
+      background:
+        radial-gradient(900px 400px at 110% -50%, rgba(212,107,61,0.28), transparent 60%),
+        linear-gradient(150deg, #0b5d57 0%, #094842 60%, #0a3f3a 100%);
+      box-shadow: var(--shadow-lg);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(rgba(255,255,255,0.09) 1px, transparent 1px);
+      background-size: 22px 22px;
+      opacity: 0.4;
+      pointer-events: none;
+      mask-image: linear-gradient(180deg, black 20%, transparent 90%);
+      -webkit-mask-image: linear-gradient(180deg, black 20%, transparent 90%);
+    }
+    .hero-badge {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.22);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    body.rtl .hero-badge { letter-spacing: 0; text-transform: none; }
+    .hero-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #9ae6b4;
+      box-shadow: 0 0 0 3px rgba(154,230,180,0.2);
+    }
+    .hero h1 {
+      position: relative;
+      margin: 14px 0 10px;
+      font-size: clamp(1.7rem, 6.5vw, 2.4rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+    }
+    .hero p {
+      position: relative;
+      margin: 0;
+      color: rgba(245,247,246,0.86);
+      font-size: 0.98rem;
+      max-width: 54ch;
+    }
+    .hero-meta {
+      position: relative;
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .meta-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.9);
+      font-weight: 500;
+    }
+    .meta-chip svg { width: 14px; height: 14px; stroke: #b8e8e1; }
+
+    /* ─── Section shell ─── */
+    .section {
+      margin-top: 26px;
+    }
+    .section-head {
+      margin-bottom: 14px;
+      padding: 0 4px;
+    }
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin: 0 0 6px;
+    }
+    body.rtl .eyebrow { letter-spacing: 0; text-transform: none; }
+    .section h2 {
+      margin: 0 0 6px;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+    .section .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* ─── Device chooser ─── */
+    .device-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px 4px 10px;
+      margin: 0 -4px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .device-tabs::-webkit-scrollbar { display: none; }
+    .device-tab {
+      flex: 0 0 auto;
+      min-width: 132px;
+      scroll-snap-align: start;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      padding: 12px 14px;
+      cursor: pointer;
+      text-align: start;
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    .device-tab:hover {
+      border-color: #cfd8d5;
+      transform: translateY(-1px);
+    }
+    .device-tab.active {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px var(--brand-soft), var(--shadow-sm);
+      background: #fdfdf9;
+    }
+    .device-tab .icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--brand-soft);
+      color: var(--brand);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+    .device-tab .icon svg { width: 16px; height: 16px; }
+    .device-tab .t-name {
+      display: block;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--ink);
+      line-height: 1.25;
+    }
+    .device-tab .t-desc {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 2px;
+      line-height: 1.35;
+    }
+
+    /* ─── Guide card ─── */
+    .guide {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-md);
+    }
+    .guide-title-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .guide-title-row .icon {
+      width: 38px; height: 38px;
+      border-radius: 11px;
+      background: var(--brand-soft);
+      color: var(--brand);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .guide-title-row .icon svg { width: 20px; height: 20px; }
+    .guide-title-row h3 {
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .guide-title-row p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* Steps */
+    .sub-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-2);
+      margin: 18px 0 10px;
+    }
+    body.rtl .sub-label { letter-spacing: 0; text-transform: none; }
+
+    .steps {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+    .steps::before {
+      content: "";
+      position: absolute;
+      top: 14px;
+      bottom: 14px;
+      inset-inline-start: 14px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--brand-soft), transparent);
+      border-radius: 2px;
+    }
+    .step {
+      position: relative;
+      padding-inline-start: 42px;
+      padding-block: 8px;
+      font-size: 0.95rem;
+      color: var(--ink-2);
+    }
+    .step + .step { margin-top: 6px; }
+    .step-num {
+      position: absolute;
+      inset-inline-start: 0;
+      top: 6px;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 2px solid var(--brand);
+      color: var(--brand);
+      font-weight: 700;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 4px var(--bg);
+    }
+    .step strong { color: var(--ink); font-weight: 600; }
+
+    /* Feature / privacy boxes */
+    .info-stack {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .info-box {
+      padding: 16px;
+      border-radius: var(--r-md);
+      border: 1px solid var(--line);
+      background: var(--bg-2);
+    }
+    .info-box.privacy {
+      background: var(--accent-soft);
+      border-color: #f8d5be;
+    }
+    .info-box-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin: 0 0 8px;
+      color: var(--ink);
+    }
+    .info-box-title svg { width: 16px; height: 16px; }
+    .info-box.privacy .info-box-title { color: #8a4117; }
+    .info-box.privacy .info-box-title svg { stroke: #b45309; }
+    .info-box ul {
+      margin: 0;
+      padding-inline-start: 20px;
+      color: var(--ink-2);
+      font-size: 0.9rem;
+    }
+    .info-box ul li + li { margin-top: 4px; }
+    .info-box p { margin: 0; color: var(--ink-2); font-size: 0.9rem; }
+
+    /* ─── YouTube Shorts special card ─── */
+    .yt-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+    .yt-card::before {
+      content: "";
+      position: absolute;
+      top: -40px;
+      inset-inline-end: -40px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 0, 0, 0.08), transparent 70%);
+      pointer-events: none;
+    }
+    .yt-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+    .yt-logo {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: #ff0000;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 6px 16px rgba(255, 0, 0, 0.22);
+    }
+    .yt-logo svg { width: 24px; height: 24px; color: #fff; }
+    .yt-head h3 {
+      margin: 2px 0 4px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .yt-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .yt-note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      background: #fff9ec;
+      border: 1px solid #f5e3b7;
+      border-radius: var(--r-sm);
+      color: #7a5a10;
+      font-size: 0.85rem;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .yt-note svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; stroke: #b45309; }
+
+    /* Tips grid */
+    .tips {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    @media (min-width: 560px) {
+      .tips { grid-template-columns: 1fr 1fr; }
+    }
+    .tip {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    .tip-ic {
+      width: 30px; height: 30px;
+      border-radius: 8px;
+      background: var(--brand-soft);
+      color: var(--brand);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    .tip-ic svg { width: 16px; height: 16px; }
+    .tip h4 {
+      margin: 0 0 4px;
+      font-size: 0.98rem;
+      font-weight: 700;
+    }
+    .tip p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    /* Awareness message */
+    .awareness {
+      margin-top: 16px;
+      padding: 20px;
+      border-radius: var(--r-lg);
+      background: linear-gradient(135deg, #0f2d2a 0%, #112f2c 100%);
+      color: #e8f1ef;
+      border: 1px solid #0a2623;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+    .awareness::before {
+      content: "";
+      position: absolute;
+      top: -60px;
+      inset-inline-end: -60px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,107,61,0.3), transparent 70%);
+      pointer-events: none;
+    }
+    .awareness-label {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #f2c49a;
+      margin-bottom: 8px;
+    }
+    body.rtl .awareness-label { letter-spacing: 0; text-transform: none; }
+    .awareness p {
+      position: relative;
+      margin: 0;
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+
+    /* References */
+    .refs {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+    .refs-list {
+      list-style: none;
+      margin: 14px 0 0;
+      padding: 0;
+      display: grid;
+      gap: 2px;
+    }
+    .refs-list a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 11px 4px;
+      text-decoration: none;
+      border-bottom: 1px solid var(--line-2);
+      color: var(--ink);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s ease;
+    }
+    .refs-list li:last-child a { border-bottom: 0; }
+    .refs-list a:hover { color: var(--brand); }
+    .refs-list a svg {
+      width: 14px; height: 14px;
+      color: var(--muted);
+      flex-shrink: 0;
+      transition: transform 0.15s ease, color 0.15s ease;
+    }
+    .refs-list a:hover svg { color: var(--brand); transform: translateX(2px); }
+    body.rtl .refs-list a:hover svg { transform: translateX(-2px); }
+
+    /* Footer */
+    .foot {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      padding: 0 12px;
+    }
+    .foot .sep {
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--line);
+      margin: 0 10px;
+      vertical-align: middle;
+    }
+
+    /* Fade-in */
+    .fade-in {
+      animation: fade 0.35s ease both;
+    }
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    /* Focus-visible */
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--brand);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    @media (max-width: 420px) {
+      .hero { padding: 24px 20px 26px; }
+      .guide, .yt-card, .refs { padding: 18px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in { animation: none; }
+      * { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/>
+          </svg>
+        </span>
+        <span class="brand-text" id="brand-text">Parental Controls</span>
+      </div>
+      <div class="lang-switch" role="tablist" aria-label="Language">
+        <button class="lang-btn active" id="btn-en" role="tab" aria-selected="true">EN</button>
+        <button class="lang-btn" id="btn-ar" role="tab" aria-selected="false">ع</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <span class="hero-badge" id="hero-badge">Information Security Booth</span>
+      <h1 id="hero-title"></h1>
+      <p id="hero-subtitle"></p>
+      <div class="hero-meta">
+        <span class="meta-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span id="meta-1"></span>
+        </span>
+        <span class="meta-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span id="meta-2"></span>
+        </span>
+      </div>
+    </section>
+
+    <!-- Device chooser -->
+    <section class="section">
+      <div class="section-head">
+        <p class="eyebrow" id="device-eyebrow"></p>
+        <h2 id="device-title"></h2>
+        <p class="lead" id="device-subtitle"></p>
+      </div>
+
+      <div class="device-tabs" role="tablist" aria-label="Device">
+        <button class="device-tab active" data-device="iphone" role="tab" aria-selected="true">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+          </span>
+          <span class="t-name">iPhone / iPad</span>
+          <span class="t-desc" id="d-iphone"></span>
+        </button>
+        <button class="device-tab" data-device="android" role="tab" aria-selected="false">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="7" x2="6" y2="15"/><line x1="18" y1="7" x2="18" y2="15"/><path d="M7 8c0-2.8 2.2-5 5-5s5 2.2 5 5v9H7V8z"/><line x1="10" y1="5" x2="9" y2="4"/><line x1="14" y1="5" x2="15" y2="4"/><circle cx="10" cy="11" r="0.6" fill="currentColor"/><circle cx="14" cy="11" r="0.6" fill="currentColor"/><line x1="9" y1="19" x2="9" y2="21"/><line x1="15" y1="19" x2="15" y2="21"/></svg>
+          </span>
+          <span class="t-name">Android</span>
+          <span class="t-desc" id="d-android"></span>
+        </button>
+        <button class="device-tab" data-device="windows" role="tab" aria-selected="false">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1.5"/><line x1="12" y1="4" x2="12" y2="16"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="7" y1="20" x2="17" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></svg>
+          </span>
+          <span class="t-name">Windows</span>
+          <span class="t-desc" id="d-windows"></span>
+        </button>
+        <button class="device-tab" data-device="mac" role="tab" aria-selected="false">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8"/><path d="M10 16v4"/><path d="M14 16v4"/></svg>
+          </span>
+          <span class="t-name">Mac</span>
+          <span class="t-desc" id="d-mac"></span>
+        </button>
+      </div>
+
+      <!-- Guide card -->
+      <article class="guide" id="guide" aria-live="polite">
+        <div class="guide-title-row">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </span>
+          <div>
+            <h3 id="guide-title"></h3>
+            <p id="guide-subtitle"></p>
+          </div>
+        </div>
+
+        <span class="sub-label" id="steps-label"></span>
+        <ol class="steps" id="steps-list"></ol>
+
+        <div class="info-stack">
+          <div class="info-box">
+            <p class="info-box-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span id="features-title"></span>
+            </p>
+            <ul id="features-list"></ul>
+          </div>
+          <div class="info-box privacy">
+            <p class="info-box-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4z"/></svg>
+              <span id="privacy-title"></span>
+            </p>
+            <p id="privacy-text"></p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- YouTube Shorts (NEW section) -->
+    <section class="section" aria-labelledby="yt-heading">
+      <div class="section-head">
+        <p class="eyebrow" id="yt-eyebrow"></p>
+        <h2 id="yt-heading"></h2>
+        <p class="lead" id="yt-lead"></p>
+      </div>
+
+      <article class="yt-card">
+        <div class="yt-head">
+          <span class="yt-logo" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 7.1c-.3-1-1-1.8-2-2.1C19.7 4.5 12 4.5 12 4.5s-7.7 0-9.5.5c-1 .3-1.7 1.1-2 2.1C0 8.9 0 12 0 12s0 3.1.5 4.9c.3 1 1 1.8 2 2.1C4.3 19.5 12 19.5 12 19.5s7.7 0 9.5-.5c1-.3 1.7-1.1 2-2.1.5-1.8.5-4.9.5-4.9s0-3.1-.5-4.9z"/><path fill="#fff" d="M9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
+          </span>
+          <div>
+            <h3 id="yt-title"></h3>
+            <p id="yt-subtitle"></p>
+          </div>
+        </div>
+
+        <span class="sub-label" id="yt-steps-label"></span>
+        <ol class="steps" id="yt-steps"></ol>
+
+        <div class="yt-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span id="yt-note-text"></span>
+        </div>
+      </article>
+    </section>
+
+    <!-- Tips -->
+    <section class="section">
+      <div class="section-head">
+        <p class="eyebrow" id="tips-eyebrow"></p>
+        <h2 id="tips-title"></h2>
+        <p class="lead" id="tips-subtitle"></p>
+      </div>
+      <div class="tips" id="tips-grid"></div>
+
+      <div class="awareness">
+        <p class="awareness-label" id="awareness-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg>
+          <span id="awareness-label-text"></span>
+        </p>
+        <p id="awareness-text"></p>
+      </div>
+    </section>
+
+    <!-- References -->
+    <section class="section">
+      <div class="section-head">
+        <p class="eyebrow" id="refs-eyebrow"></p>
+        <h2 id="refs-title"></h2>
+        <p class="lead" id="refs-subtitle"></p>
+      </div>
+      <div class="refs">
+        <ul class="refs-list" id="refs-list"></ul>
+      </div>
+    </section>
+
+    <p class="foot">
+      <span id="foot-left"></span>
+      <span class="sep"></span>
+      <span id="foot-right"></span>
+    </p>
+  </main>
+
+  <script>
+    const content = {
+      en: {
+        dir: 'ltr',
+        brand: 'Parental Controls',
+        heroBadge: 'Information Security Booth',
+        heroTitle: 'Keep kids safe online — without spying on them.',
+        heroSubtitle: 'A short, practical guide for parents: content filters, screen-time limits, and safer habits across phones, computers, and YouTube.',
+        meta1: 'Based on official Apple, Google & Microsoft support',
+        meta2: 'Takes about 5 minutes per device',
+
+        deviceEyebrow: 'Step 1',
+        deviceTitle: 'Pick your child\u2019s device',
+        deviceSubtitle: 'Tap a device to see the exact steps for that platform.',
+        deviceDescriptions: {
+          iphone: 'Screen Time',
+          android: 'Family Link',
+          windows: 'Family Safety',
+          mac: 'Screen Time'
+        },
+
+        stepsLabel: 'Setup steps',
+        featuresTitle: 'What you can control',
+        privacyTitle: 'Privacy reminder',
+
+        ytEyebrow: 'Bonus',
+        ytHeading: 'Turn off YouTube Shorts for your child',
+        ytLead: 'YouTube now lets you set the Shorts feed to zero minutes per day, which hides Shorts from the feed and from the Shorts tab.',
+        ytTitle: 'Hide YouTube Shorts on mobile',
+        ytSubtitle: 'Works on Android and iPhone in the YouTube app.',
+        ytStepsLabel: 'Steps in the YouTube app',
+        ytSteps: [
+          'Open the <strong>YouTube</strong> app and tap your <strong>profile picture</strong> (top corner).',
+          'Tap the <strong>settings gear</strong>, then open <strong>General</strong> or <strong>Time management</strong>.',
+          'Under <strong>Daily limits</strong>, find <strong>Shorts feed limit</strong> and turn it on.',
+          'Choose <strong>0 minutes</strong> from the list of time options.',
+          'Close the app fully and reopen it so the Shorts feed disappears from the home screen.'
+        ],
+        ytNote: 'If the 0-minute option does not appear yet, update the YouTube app and make sure you are signed in. The feature is rolling out on Android and iOS and is also available inside parental controls for child accounts. A few Shorts may still appear in search results or recommendations.',
+
+        tipsEyebrow: 'Best practices',
+        tipsTitle: 'Smart parenting tips',
+        tipsSubtitle: 'Parental controls work best when they come with trust, open talk, and clear family rules.',
+        tips: [
+          { t: 'Talk first', d: 'Explain why the limits exist so the child sees them as care, not punishment.' },
+          { t: 'Age-appropriate settings', d: 'Choose filters and time limits that fit the child\u2019s age and daily routine.' },
+          { t: 'Review regularly', d: 'Apps, games, and habits change fast — re-check the settings every month or two.' },
+          { t: 'Balance, not fear', d: 'Aim for safer use and healthy habits, not constant surveillance.' }
+        ],
+
+        awarenessLabel: 'Awareness message',
+        awarenessText: 'Protect your child without turning safety into constant monitoring. Explain the rules, use age-appropriate limits, and review the settings together when you can.',
+
+        refsEyebrow: 'Sources',
+        refsTitle: 'Official references',
+        refsSubtitle: 'Every setting mentioned is based on official documentation from Apple, Google, and Microsoft.',
+
+        footLeft: 'Information Security project',
+        footRight: 'CPIT — Parental Controls Booth',
+
+        devices: {
+          iphone: {
+            title: 'iPhone / iPad',
+            subtitle: 'Use Screen Time and Content & Privacy Restrictions on Apple devices.',
+            steps: [
+              'Open <strong>Settings</strong> and tap <strong>Screen Time</strong>.',
+              'If your child is part of your Family Sharing group, tap the child\u2019s name under <strong>Family</strong>.',
+              'Turn Screen Time on if needed, then open <strong>Content & Privacy Restrictions</strong>.',
+              'Adjust <strong>Web Content</strong>, app limits, downtime, purchases, and media ratings as needed.'
+            ],
+            features: [
+              'Set daily screen time and downtime hours.',
+              'Filter web content and block age-inappropriate media.',
+              'Control purchases, downloads, and built-in app access.'
+            ],
+            privacy: 'Use the settings to guide and protect, not to spy. Tell your child what is limited and why — hidden rules rarely build trust.'
+          },
+          android: {
+            title: 'Android',
+            subtitle: 'Use Google Family Link and Google Play parental controls.',
+            steps: [
+              'Install or open <strong>Google Family Link</strong> on the parent\u2019s phone.',
+              'Select your child\u2019s Google account, or finish supervision setup if needed.',
+              'Use Family Link to manage screen time, app approvals, and account settings.',
+              'For content filtering, open <strong>Controls \u2192 Google Play</strong> and choose the content type you want to restrict.'
+            ],
+            features: [
+              'Approve or block app downloads and in-app purchases.',
+              'Set daily screen-time and bedtime limits.',
+              'Filter Google Play content and view activity for supervised devices.'
+            ],
+            privacy: 'Supervision is for safety and digital wellbeing. Keep the child informed so it feels like guidance, not hidden surveillance.'
+          },
+          windows: {
+            title: 'Windows',
+            subtitle: 'Use Microsoft Family Safety for filters, screen-time limits, and activity reports.',
+            steps: [
+              'Open <strong>Microsoft Family Safety</strong> or sign in to Microsoft family settings online.',
+              'Select the child or family member you want to manage.',
+              'Open <strong>Content filters</strong> to filter websites and searches.',
+              'Set <strong>Screen time</strong>, app & game limits, and review <strong>Activity reporting</strong>.'
+            ],
+            features: [
+              'Filter inappropriate websites and search results.',
+              'Set screen-time limits across supported devices.',
+              'View device and app activity reports.'
+            ],
+            privacy: 'Activity reports are useful, but set expectations openly so monitoring never feels like hidden tracking.'
+          },
+          mac: {
+            title: 'Mac',
+            subtitle: 'Use Screen Time on macOS to manage app use, downtime, and restrictions.',
+            steps: [
+              'Open <strong>System Settings</strong> on the Mac.',
+              'Click <strong>Screen Time</strong> in the sidebar.',
+              'Turn on <strong>App & Website Activity</strong>, <strong>Downtime</strong>, or <strong>App Limits</strong>.',
+              'If managing a family member, pick their Screen Time settings and adjust the limits.'
+            ],
+            features: [
+              'See app and website activity reports.',
+              'Set downtime windows and app limits.',
+              'Manage family members\u2019 Screen Time from the parent Mac.'
+            ],
+            privacy: 'Use limits to build routines and healthy habits. The goal is structure and support, not fear.'
+          }
+        },
+
+        refs: [
+          { label: 'Apple — Use parental controls on your child\u2019s iPhone or iPad', url: 'https://support.apple.com/en-sa/105121' },
+          { label: 'Apple — Use Screen Time to manage your child\u2019s iPhone or iPad', url: 'https://support.apple.com/en-sa/108806' },
+          { label: 'Apple — Set up Screen Time for a child on iPhone', url: 'https://support.apple.com/en-sa/guide/iphone/ipha200da319/ios' },
+          { label: 'Apple — Screen Time on Mac', url: 'https://support.apple.com/guide/mac-pro/screen-time-apd35460a9f3/mac' },
+          { label: 'Apple — Change Screen Time settings on Mac', url: 'https://support.apple.com/en-sa/guide/mac-help/mchlca5139d2/mac' },
+          { label: 'Google — Get started with Family Link', url: 'https://support.google.com/families/answer/7101025?hl=en' },
+          { label: 'Google — Manage your child\u2019s Google Play apps', url: 'https://support.google.com/families/answer/7103028?hl=en' },
+          { label: 'Google Play — Set up parental controls', url: 'https://support.google.com/googleplay/answer/1075738?hl=en' },
+          { label: 'Microsoft — Filter websites and searches with Family Safety', url: 'https://support.microsoft.com/en-us/family-safety/filter-websites-and-searches-using-microsoft-family-safety' },
+          { label: 'Microsoft — View device and app activity', url: 'https://support.microsoft.com/en-us/family-safety/view-device-and-app-use-with-family-safety-activity-reporting' },
+          { label: 'YouTube — Manage digital wellbeing settings', url: 'https://support.google.com/youtube/answer/9012523?hl=en' }
+        ]
+      },
+
+      ar: {
+        dir: 'rtl',
+        brand: 'الرقابة الأبوية',
+        heroBadge: 'بوث أمن المعلومات',
+        heroTitle: 'احمِ طفلك على الإنترنت — دون أن تتحول الحماية إلى تجسس.',
+        heroSubtitle: 'دليل مختصر وعملي للأهل: تصفية المحتوى، تحديد وقت الاستخدام، وعادات أكثر أمانًا على الهواتف والحاسبات واليوتيوب.',
+        meta1: 'مبني على الوثائق الرسمية من Apple وGoogle وMicrosoft',
+        meta2: 'الإعداد يحتاج حوالي 5 دقائق لكل جهاز',
+
+        deviceEyebrow: 'الخطوة الأولى',
+        deviceTitle: 'اختر جهاز طفلك',
+        deviceSubtitle: 'اضغط على أحد الأجهزة لترى الخطوات الخاصة فيه.',
+        deviceDescriptions: {
+          iphone: 'Screen Time',
+          android: 'Family Link',
+          windows: 'Family Safety',
+          mac: 'Screen Time'
+        },
+
+        stepsLabel: 'خطوات الإعداد',
+        featuresTitle: 'ما الذي يمكنك التحكم فيه',
+        privacyTitle: 'تذكير بالخصوصية',
+
+        ytEyebrow: 'إضافة خاصة',
+        ytHeading: 'إخفاء شورتس يوتيوب عن طفلك',
+        ytLead: 'أضاف يوتيوب مؤخرًا خيار تحديد وقت استخدام الشورتس بـ ٠ دقيقة يوميًا، مما يخفي قسم الشورتس من الشاشة الرئيسية ومن تبويب Shorts.',
+        ytTitle: 'إخفاء شورتس يوتيوب على الجوال',
+        ytSubtitle: 'الطريقة تعمل على Android و iPhone داخل تطبيق YouTube.',
+        ytStepsLabel: 'الخطوات داخل تطبيق YouTube',
+        ytSteps: [
+          'افتح تطبيق <strong>YouTube</strong>، ثم اضغط على <strong>صورة الحساب</strong> في أعلى الشاشة.',
+          'اضغط على أيقونة <strong>الإعدادات</strong>، ثم افتح <strong>General</strong> أو <strong>Time management</strong> (إدارة الوقت).',
+          'تحت قسم <strong>Daily limits</strong> (الحدود اليومية)، ابحث عن <strong>Shorts feed limit</strong> وفعّله.',
+          'اختر خيار <strong>0 minutes</strong> (٠ دقيقة) من قائمة الأوقات.',
+          'أغلق التطبيق بالكامل ثم أعد فتحه — سيختفي قسم Shorts من الشاشة الرئيسية.'
+        ],
+        ytNote: 'إذا لم يظهر خيار ٠ دقيقة عندك، حدّث تطبيق YouTube وتأكد من تسجيل الدخول. الميزة يتم توزيعها تدريجيًا على Android و iOS، وهي متوفرة أيضًا داخل إعدادات الرقابة الأبوية لحسابات الأطفال. قد تظهر بعض مقاطع الشورتس في نتائج البحث أو الاقتراحات.',
+
+        tipsEyebrow: 'أفضل الممارسات',
+        tipsTitle: 'نصائح أبوية ذكية',
+        tipsSubtitle: 'إعدادات الرقابة الأبوية تكون أفضل عندما تجتمع مع الثقة والحوار ووضع قواعد واضحة داخل الأسرة.',
+        tips: [
+          { t: 'ابدأ بالحوار', d: 'اشرح سبب وجود الحدود حتى يشعر الطفل بأنها حماية وليست عقوبة.' },
+          { t: 'إعدادات مناسبة للعمر', d: 'اختر الفلاتر وأوقات الاستخدام بما يناسب عمر الطفل وروتينه اليومي.' },
+          { t: 'راجع الإعدادات دوريًا', d: 'التطبيقات والألعاب والعادات الرقمية تتغير بسرعة — راجع الإعدادات كل فترة.' },
+          { t: 'الهدف هو التوازن', d: 'الغاية ليست التخويف، بل استخدام رقمي أكثر أمانًا وعادات صحية داخل المنزل.' }
+        ],
+
+        awarenessLabel: 'رسالة توعوية',
+        awarenessText: 'احمِ طفلك دون أن تتحول الحماية إلى تجسس دائم. اشرح القواعد، استخدم حدودًا مناسبة للعمر، وراجع الإعدادات مع الطفل متى أمكن.',
+
+        refsEyebrow: 'المصادر',
+        refsTitle: 'المراجع الرسمية',
+        refsSubtitle: 'جميع الإعدادات المذكورة مبنية على الوثائق الرسمية من Apple وGoogle وMicrosoft.',
+
+        footLeft: 'مشروع أمن المعلومات',
+        footRight: 'CPIT — بوث الرقابة الأبوية',
+
+        devices: {
+          iphone: {
+            title: 'iPhone / iPad',
+            subtitle: 'استخدم Screen Time و Content & Privacy Restrictions على أجهزة Apple.',
+            steps: [
+              'افتح <strong>Settings</strong> واضغط على <strong>Screen Time</strong>.',
+              'إذا كان طفلك ضمن مجموعة Family Sharing، اضغط على اسمه تحت <strong>Family</strong>.',
+              'فعّل Screen Time إذا احتاج الأمر، ثم افتح <strong>Content & Privacy Restrictions</strong>.',
+              'عدّل خيارات <strong>Web Content</strong> وحدود التطبيقات ووقت التوقف والمشتريات وتصنيفات الوسائط.'
+            ],
+            features: [
+              'تحديد وقت الاستخدام اليومي وساعات التوقف.',
+              'تصفية محتوى الويب وحجب الوسائط غير المناسبة للعمر.',
+              'التحكم في المشتريات والتنزيلات والوصول لبعض التطبيقات المدمجة.'
+            ],
+            privacy: 'استخدم الإعدادات للتوجيه والحماية، لا للتجسس. أخبر الطفل بما يتم تقييده ولماذا — القواعد المخفية تُضعف الثقة.'
+          },
+          android: {
+            title: 'Android',
+            subtitle: 'استخدم Google Family Link وإعدادات الرقابة في Google Play.',
+            steps: [
+              'ثبّت أو افتح تطبيق <strong>Google Family Link</strong> على جهاز ولي الأمر.',
+              'اختر حساب الطفل، أو أكمل إعداد الإشراف إذا لزم الأمر.',
+              'استخدم Family Link لإدارة وقت الاستخدام، والموافقة على التطبيقات، وإعدادات حساب الطفل.',
+              'لتصفية المحتوى: افتح <strong>Controls \u2190 Google Play</strong> ثم اختر نوع المحتوى الذي تريد تقييده.'
+            ],
+            features: [
+              'الموافقة على تنزيل التطبيقات أو حظرها وحظر المشتريات داخل التطبيق.',
+              'تحديد وقت استخدام يومي ووقت النوم.',
+              'تصفية محتوى Google Play ومتابعة نشاط الأجهزة الخاضعة للإشراف.'
+            ],
+            privacy: 'الإشراف هدفه سلامة الطفل وصحته الرقمية. كن واضحًا مع الطفل حتى يشعر بالتوجيه لا بالمراقبة الخفية.'
+          },
+          windows: {
+            title: 'Windows',
+            subtitle: 'استخدم Microsoft Family Safety لتصفية المحتوى وتحديد وقت الاستخدام وعرض النشاط.',
+            steps: [
+              'افتح تطبيق <strong>Microsoft Family Safety</strong>، أو سجّل الدخول إلى إعدادات العائلة من موقع Microsoft.',
+              'اختر الطفل أو فرد العائلة الذي تريد إدارة حسابه.',
+              'افتح <strong>Content filters</strong> لتصفية المواقع وعمليات البحث.',
+              'اضبط <strong>Screen time</strong> وحدود التطبيقات والألعاب، وراجع <strong>Activity reporting</strong> عند الحاجة.'
+            ],
+            features: [
+              'تصفية المواقع ونتائج البحث غير المناسبة.',
+              'تحديد وقت الاستخدام عبر الأجهزة المدعومة.',
+              'عرض تقارير النشاط لاستخدام الجهاز والتطبيقات.'
+            ],
+            privacy: 'تقارير النشاط مفيدة، لكن اجعل توقعات الأسرة واضحة حتى لا يشعر الطفل بأن المتابعة مجرد تتبع خفي.'
+          },
+          mac: {
+            title: 'Mac',
+            subtitle: 'استخدم Screen Time على macOS لإدارة التطبيقات ووقت التوقف والقيود.',
+            steps: [
+              'افتح <strong>System Settings</strong> على الماك.',
+              'اضغط على <strong>Screen Time</strong> من الشريط الجانبي.',
+              'فعّل خيارات مثل <strong>App & Website Activity</strong> و <strong>Downtime</strong> و <strong>App Limits</strong>.',
+              'إذا كنت تدير حساب أحد أفراد العائلة، اختر إعدادات Screen Time الخاصة به وعدّل الحدود.'
+            ],
+            features: [
+              'عرض تقارير نشاط التطبيقات والمواقع.',
+              'تحديد وقت التوقف وحدود التطبيقات.',
+              'إدارة إعدادات Screen Time لأفراد العائلة من جهاز الماك.'
+            ],
+            privacy: 'استعمل الحدود لبناء روتين وعادات صحية. الهدف هو الدعم والتنظيم، لا التخويف أو العقاب.'
+          }
+        },
+
+        refs: [
+          { label: 'Apple — استخدام أدوات الرقابة الأبوية لإدارة iPhone أو iPad الخاص بطفلك', url: 'https://support.apple.com/en-sa/105121' },
+          { label: 'Apple — استخدام مدة استخدام الجهاز لإدارة iPhone أو iPad الخاص بطفلك', url: 'https://support.apple.com/en-sa/108806' },
+          { label: 'Apple — إعداد مدة استخدام الجهاز لطفل على iPhone', url: 'https://support.apple.com/en-sa/guide/iphone/ipha200da319/ios' },
+          { label: 'Apple — مدة استخدام الجهاز على Mac', url: 'https://support.apple.com/guide/mac-pro/screen-time-apd35460a9f3/mac' },
+          { label: 'Apple — تغيير إعدادات مدة استخدام الجهاز على Mac', url: 'https://support.apple.com/en-sa/guide/mac-help/mchlca5139d2/mac' },
+          { label: 'Google — البدء باستخدام Family Link', url: 'https://support.google.com/families/answer/7101025?hl=ar' },
+          { label: 'Google — إدارة تطبيقات Google Play الخاصة بطفلك', url: 'https://support.google.com/families/answer/7103028?hl=ar' },
+          { label: 'Google Play — إعداد أدوات الرقابة الأبوية', url: 'https://support.google.com/googleplay/answer/1075738?hl=ar' },
+          { label: 'Microsoft — تصفية المواقع وعمليات البحث باستخدام Family Safety', url: 'https://support.microsoft.com/en-us/family-safety/filter-websites-and-searches-using-microsoft-family-safety' },
+          { label: 'Microsoft — عرض استخدام الجهاز والتطبيقات عبر Activity reporting', url: 'https://support.microsoft.com/en-us/family-safety/view-device-and-app-use-with-family-safety-activity-reporting' },
+          { label: 'YouTube — إعدادات السلامة الرقمية وإدارة الوقت', url: 'https://support.google.com/youtube/answer/9012523?hl=ar' }
+        ]
+      }
+    };
+
+    let currentLang = 'en';
+    let currentDevice = 'iphone';
+
+    const $ = (id) => document.getElementById(id);
+    const deviceTabs = [...document.querySelectorAll('.device-tab')];
+
+    function setText(id, v) {
+      const el = $(id);
+      if (el) el.textContent = v;
+    }
+
+    function render() {
+      const t = content[currentLang];
+      document.documentElement.lang = currentLang === 'ar' ? 'ar' : 'en';
+      document.documentElement.dir = t.dir;
+      document.body.classList.toggle('rtl', t.dir === 'rtl');
+
+      $('btn-en').classList.toggle('active', currentLang === 'en');
+      $('btn-ar').classList.toggle('active', currentLang === 'ar');
+      $('btn-en').setAttribute('aria-selected', currentLang === 'en');
+      $('btn-ar').setAttribute('aria-selected', currentLang === 'ar');
+
+      setText('brand-text', t.brand);
+      setText('hero-badge', t.heroBadge);
+      setText('hero-title', t.heroTitle);
+      setText('hero-subtitle', t.heroSubtitle);
+      setText('meta-1', t.meta1);
+      setText('meta-2', t.meta2);
+
+      setText('device-eyebrow', t.deviceEyebrow);
+      setText('device-title', t.deviceTitle);
+      setText('device-subtitle', t.deviceSubtitle);
+
+      setText('d-iphone', t.deviceDescriptions.iphone);
+      setText('d-android', t.deviceDescriptions.android);
+      setText('d-windows', t.deviceDescriptions.windows);
+      setText('d-mac', t.deviceDescriptions.mac);
+
+      setText('steps-label', t.stepsLabel);
+      setText('features-title', t.featuresTitle);
+      setText('privacy-title', t.privacyTitle);
+
+      setText('yt-eyebrow', t.ytEyebrow);
+      setText('yt-heading', t.ytHeading);
+      setText('yt-lead', t.ytLead);
+      setText('yt-title', t.ytTitle);
+      setText('yt-subtitle', t.ytSubtitle);
+      setText('yt-steps-label', t.ytStepsLabel);
+      setText('yt-note-text', t.ytNote);
+
+      const ytList = $('yt-steps');
+      ytList.innerHTML = '';
+      t.ytSteps.forEach((s, i) => {
+        const li = document.createElement('li');
+        li.className = 'step';
+        li.innerHTML = `<span class="step-num">${i + 1}</span>${s}`;
+        ytList.appendChild(li);
+      });
+
+      setText('tips-eyebrow', t.tipsEyebrow);
+      setText('tips-title', t.tipsTitle);
+      setText('tips-subtitle', t.tipsSubtitle);
+
+      const tipsGrid = $('tips-grid');
+      tipsGrid.innerHTML = '';
+      const tipIcons = [
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>',
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v2"/><path d="M12 19v2"/><path d="M5 12H3"/><path d="M21 12h-2"/><circle cx="12" cy="12" r="5"/></svg>'
+      ];
+      t.tips.forEach((tip, i) => {
+        const card = document.createElement('div');
+        card.className = 'tip';
+        card.innerHTML = `<span class="tip-ic" aria-hidden="true">${tipIcons[i % tipIcons.length]}</span><h4>${tip.t}</h4><p>${tip.d}</p>`;
+        tipsGrid.appendChild(card);
+      });
+
+      setText('awareness-label-text', t.awarenessLabel);
+      setText('awareness-text', t.awarenessText);
+
+      setText('refs-eyebrow', t.refsEyebrow);
+      setText('refs-title', t.refsTitle);
+      setText('refs-subtitle', t.refsSubtitle);
+
+      const refsList = $('refs-list');
+      refsList.innerHTML = '';
+      const arrow = t.dir === 'rtl'
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+      t.refs.forEach(r => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = r.url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.innerHTML = `<span>${r.label}</span>${arrow}`;
+        li.appendChild(a);
+        refsList.appendChild(li);
+      });
+
+      setText('foot-left', t.footLeft);
+      setText('foot-right', t.footRight);
+
+      renderDevice();
+    }
+
+    function renderDevice() {
+      const d = content[currentLang].devices[currentDevice];
+      const guide = $('guide');
+      guide.classList.remove('fade-in');
+      // force reflow to restart animation
+      void guide.offsetWidth;
+      guide.classList.add('fade-in');
+
+      setText('guide-title', d.title);
+      setText('guide-subtitle', d.subtitle);
+      setText('privacy-text', d.privacy);
+
+      const stepsList = $('steps-list');
+      stepsList.innerHTML = '';
+      d.steps.forEach((s, i) => {
+        const li = document.createElement('li');
+        li.className = 'step';
+        li.innerHTML = `<span class="step-num">${i + 1}</span>${s}`;
+        stepsList.appendChild(li);
+      });
+
+      const featuresList = $('features-list');
+      featuresList.innerHTML = '';
+      d.features.forEach(f => {
+        const li = document.createElement('li');
+        li.innerHTML = f;
+        featuresList.appendChild(li);
+      });
+
+      deviceTabs.forEach(tab => {
+        const active = tab.dataset.device === currentDevice;
+        tab.classList.toggle('active', active);
+        tab.setAttribute('aria-selected', active);
+      });
+    }
+
+    $('btn-en').addEventListener('click', () => { currentLang = 'en'; render(); });
+    $('btn-ar').addEventListener('click', () => { currentLang = 'ar'; render(); });
+
+    deviceTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        currentDevice = tab.dataset.device;
+        renderDevice();
+        // scroll tab into view on mobile
+        tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      });
+    });
+
+    render();
+  </script>
+</body>
+</html>
